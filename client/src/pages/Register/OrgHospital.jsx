@@ -6,8 +6,8 @@ const OrgHospital = ({type}) => {
   return (
     <>
         <Form.Item
-            label={type === "hospital" ? "Hospital Name" : "Organisation Name"}
-            name={type === "hospital" ? "hospitalName" : "OrganisationName"}
+            label={type === "hospital" ? "Hospital Name" : "Organization Name"}
+            name={type === "hospital" ? "hospitalName" : "organizationName"}
         >
             <Input />
         </Form.Item>
