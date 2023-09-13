@@ -71,20 +71,22 @@ phone: {
     timestamps: true
 });
 
-// UserSchema.pre('save', async function () {
-//     const salt = await bcrypt.genSalt(10)
-//     this.password = await bcrypt.hash(this.password, salt)
-//     this.confirmPassword = undefined
-// })
+UserSchema.pre('save', async function () {
+    const salt = await bcrypt.genSalt(10)
+    this.password = await bcrypt.hash(this.password, salt)
+    this.confirmPassword = undefined
+})
 
-// UserSchema.methods.createJWT = function () {
-//     return jwt.sign({id:this._id, isAdmin: this.isAdmin},process.env.JWT_SECRET,{expiresIn:'1d'})
-// }
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+    const isMatch = await bcrypt.compare(candidatePassword, this.password)
+    return isMatch
+}
 
-// UserSchema.methods.comparePassword = async function (candidatePassword) {
-//     const isMatch = await bcrypt.compare(candidatePassword, this.password)
-//     return isMatch
-// }
+UserSchema.methods.createJWT = function () {
+    return jwt.sign({id:this._id},process.env.JWT_SECRET,{expiresIn:'1d'})
+}
 
 
-export default mongoose.model('Users', UserSchema);;
+
+
+export default mongoose.model('Users', UserSchema);
