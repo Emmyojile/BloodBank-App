@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors"
 dotenv.config();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 // Import the database connection function
 import connectDB from "./config/db.js";
@@ -31,16 +31,6 @@ app.use(cookieParser());
 import apiRoutes from "./routes/index.js";
 app.use("/api", apiRoutes);
 
-app.use((err, req, res, next) => {
-  const errorStatus = err.status || 500;
-  const errorMessage = err.message || "Something went wrong!";
-  return res.status(errorStatus).json({
-    success: false,
-    status: errorStatus,
-    message: errorMessage,
-    stack: err.stack,
-  });
-});
 
 const start = async () => {
   try {
