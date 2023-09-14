@@ -2,28 +2,28 @@ import React, { useState } from "react";
 import { Button, Form, Input, Radio, message } from "antd";
 import { Link } from "react-router-dom";
 import OrgHospital from "./OrgHospital";
-import {RegisterUser} from "../../api/users"
+import {RegisterUser} from "../../api/users";
 
 const Register = () => {
   const [type, setType] = useState("donor");
 
-  const onFinish = async(values) => {
+
+  const onFinish = async (values) => {
     try {
       const response = await RegisterUser({
         ...values,
-        userType: type
+        userType: type,
       });
-      if(response.sucess) {
-        console.log(response.success);
+      if (response.success) {
         message.success(response.message);
       } else {
         throw new Error(response.message);
       }
     } catch (error) {
-      console.log(error.message);
-      message.error(error.message);
+      message.error(error.message); // Use error.message here
     }
-  }
+  };
+  
 
   return (
     <div className="flex h-screen justify-center items-center bg-primary">

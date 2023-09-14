@@ -18,7 +18,7 @@ name: {
     }
 },
 //this field is required if userType is hospital
-hospitalNmae: {
+hospitalName: {
   type: String,
   required: function () {
     if(this.userType === "hospital") {
@@ -27,7 +27,7 @@ hospitalNmae: {
   },  
 },
 //this field is required if userType is organization
-organizationNmae: {
+organizationName: {
     type: String,
     required: function () {
       if(this.userType === "organization") {
@@ -45,7 +45,7 @@ website: {
     }
 },
 //this field is required if userType is organization or hospital
-addres: {
+address: {
     type: String,
     required: function () {
         if (this.userType == "organization" || this.userType == "hospital") {

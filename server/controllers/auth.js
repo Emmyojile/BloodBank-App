@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 
 //Register User
-export const registerUser = async (req, res, next) => {    
+export const registerUser = async (req, res) => {    
     try {
         //check if user exists  
         const userExists = await User.findOne({email: req.body.email});
@@ -14,7 +14,7 @@ export const registerUser = async (req, res, next) => {
 
         //save user
         const user = new User(req.body);
-        await User.save(user);
+        await user.save();
 
         return res.send({
             success: true,
@@ -29,11 +29,11 @@ export const registerUser = async (req, res, next) => {
 }
 
 //Login User
-export const loginUser = async (req, res, next) => {    
+export const loginUser = async (req, res) => {    
     try {
         //check if user exists  
         const user = await User.findOne({email: req.body.email});
-        if(user) {
+        if(!user) {
             return res.send({
                 success: false,
                 message: "User not found",
@@ -41,7 +41,7 @@ export const loginUser = async (req, res, next) => {
         }
 
         //check password
-        const validPassword = await user(req.body.password, user.password);
+        const validPassword = await user.comparePassword(req.body.password, user.password);
         if(!validPassword) {
             return res.send({
                 success: false,

@@ -1,12 +1,25 @@
 import React, { useState } from "react";
-import { Button, Form, Input, Radio } from "antd";
-import { Link } from "react-router-dom";
+import { Button, Form, Input, Radio, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import { LoginUser } from "../../api/users";
 
 const Login = () => {
   const [type, setType] = useState("donor");
+  const navigate = useNavigate();
 
-  const onFinish = (values) => {
-    console.log(values);
+  const onFinish = async (values) => {
+    try {
+      const response = await LoginUser(values);
+      if (response.success) {
+        message.success(response.message);
+        localStorage.setItem('token', response.data);
+        navigate("/");
+      } else {
+        throw new Error(response.message);
+      }
+    } catch (error) {
+      message.error(error.message); // Use error.message here
+    }
   }
 
   return (
