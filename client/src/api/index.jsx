@@ -26,11 +26,11 @@ const axiosRequest = async (method, endpoint, payload) => {
       method,
       url: endpoint,
       data: payload,
-    },{
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
+        authorization: `Bearer ${localStorage.getItem('token')}`
       }
-    });
+    }
+    );
     return response.data; // Access the response data, not the entire response object
   } catch (error) {
     return error.response ? error.response.data : error.message;

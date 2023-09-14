@@ -1,16 +1,13 @@
-// import express from 'express';
-// const router = express.Router();
-// import {registerUser} from "../controllers/users.js";
+import express from 'express';
+const router = express.Router();
+import {GetCurrentUser} from "../controllers/users.js";
+import { authMiddleware } from '../middlewares/authMiddleware.js';
 
 
-// // register route
-// router.route('/register').post(registerUser);
+// Get current user route
+router.route('/get-current-user').get(authMiddleware,GetCurrentUser);
 
-// router.route('/:id').delete( );
-
-// router.route('/:id').get( );
-
-// router.route('/').get( );
+router.route('/').get( );
 
 
-// export default router;
+export default router;

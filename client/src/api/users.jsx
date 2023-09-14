@@ -31,3 +31,13 @@ export const RegisterUser = async (payload) => {
     return { success: false, message: error.message };
   }
 };
+
+export const GetCurrentUser = async () => {
+  try {
+    const response = await axiosRequest("get", "/api/users/get-current-user");
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    return { success: false, message: error.message };
+  }
+};
