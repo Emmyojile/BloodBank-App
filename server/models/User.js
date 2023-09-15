@@ -82,8 +82,8 @@ UserSchema.methods.comparePassword = async function (candidatePassword) {
     return isMatch
 }
 
-UserSchema.methods.createJWT = function () {
-    return jwt.sign({id:this._id},process.env.JWT_SECRET,{expiresIn:'1d'})
-}
+// UserSchema.methods.createJWT = function () {
+//     return jwt.sign({id:this._id},process.env.JWT_SECRET,{expiresIn:'1d'})
+// }
 
 export default mongoose.model('Users', UserSchema);

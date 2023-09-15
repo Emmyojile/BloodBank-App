@@ -5,9 +5,9 @@ import { authMiddleware } from '../middlewares/authMiddleware.js';
 
 
 // Get current user route
-router.route('/get-current-user').get(authMiddleware,GetCurrentUser);
+router.route('/get-current-user').get(authMiddleware, GetCurrentUser);
 
-router.route('/').get( );
+// router.route('/').get( );
 
 
 export default router;
