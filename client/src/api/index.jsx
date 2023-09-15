@@ -27,6 +27,7 @@ const axiosRequest = async (method, endpoint, payload) => {
       url: endpoint,
       data: payload,
       headers: {
+        // authorization: JSON.parse(localStorage.getItem('token') || '')
         authorization: `Bearer ${localStorage.getItem('token')}`
       }
     }
