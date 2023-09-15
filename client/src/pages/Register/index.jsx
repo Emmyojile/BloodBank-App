@@ -1,29 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Input, Radio, message } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OrgHospital from "./OrgHospital";
-import {RegisterUser} from "../../api/users";
+import { RegisterUser } from "../../api/users";
+import { useDispatch } from "react-redux";
+import { SetLoading } from "../../redux/loaderSlice";
+import { getAntdInputValidation } from "../../utils/helpers";
 
 const Register = () => {
   const [type, setType] = useState("donor");
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     try {
+      dispatch(SetLoading(true));
       const response = await RegisterUser({
         ...values,
         userType: type,
       });
+      dispatch(SetLoading(false));
       if (response.success) {
         message.success(response.message);
+        navigate("/login");
       } else {
         throw new Error(response.message);
       }
     } catch (error) {
+      dispatch(SetLoading(false));
       message.error(error.message); // Use error.message here
     }
   };
-  
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className="flex h-screen justify-center items-center bg-primary">
@@ -50,28 +63,40 @@ const Register = () => {
 
         {type === "donor" && (
           <>
-            <Form.Item label="Name" name='name'>
+            <Form.Item
+              label="Name"
+              name="name"
+              rules={getAntdInputValidation()}
+            >
               <Input />
             </Form.Item>
-            <Form.Item label="Email" name='email'>
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={getAntdInputValidation()}
+            >
               <Input />
             </Form.Item>
-            <Form.Item label="Phone" name='phone'>
+            <Form.Item
+              label="Phone"
+              name="phone"
+              rules={getAntdInputValidation()}
+            >
               <Input />
             </Form.Item>
-            <Form.Item label="Password" name='password'>
-              <Input type="password"/>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={getAntdInputValidation()}
+            >
+              <Input type="password" />
             </Form.Item>
           </>
         )}
 
-        {type !== 'donor' && 
-            <OrgHospital type={type}/>
-        }
+        {type !== "donor" && <OrgHospital type={type} />}
 
-        <Button type="primary" className="col-span-2"
-        htmlType="submit"
-        >
+        <Button type="primary" className="col-span-2" htmlType="submit">
           Register
         </Button>
 
