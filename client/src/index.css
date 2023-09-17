@@ -38,3 +38,7 @@ a:hover{
   text-decoration: underline !important;
   color: inherit;
 }
+
+i{
+  font-size: 18px;
+}

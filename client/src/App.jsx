@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import ProtectedPages from "./components/ProtectedPages";
 import { useSelector } from "react-redux";
 import Loading from "./components/Loading";
+import Profile from "./pages/Profile";
 
 function App() {
   const { loading } = useSelector((state) => state.loaders);
@@ -22,6 +23,15 @@ function App() {
               </ProtectedPages>
             }
           />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedPages>
+                <Profile/>
+              </ProtectedPages>
+            }
+          />
+          
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
