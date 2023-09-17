@@ -1,14 +1,17 @@
-import Modal from 'antd/es/modal/Modal'
-import React from 'react'
+import Modal from "antd/es/modal/Modal";
+import React from "react";
 
-const inventoryForm = ({open, setOpen, reloadData}) => {
+const InventoryForm = ({ open, setOpen, reloadData }) => {
   return (
     <div>
-      <Modal>
-
-      </Modal>
+      <Modal
+        title="Add Inventory"
+        open={open}
+        onCancel={() => setOpen(false)}
+        centered
+      ></Modal>
     </div>
-  )
-}
+  );
+};
 
-export default inventoryForm
+export default InventoryForm;
