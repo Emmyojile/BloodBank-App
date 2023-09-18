@@ -1,6 +1,8 @@
 import { Tabs } from "antd";
 import Inventory from "./Inventory";
 import {useSelector } from "react-redux";
+import Donors from "./Donors";
+import Hospitals from "./Hospitals";
 
 const Profile = () => {
   const { currentUser } = useSelector((state) => state.users);
@@ -13,8 +15,12 @@ const Profile = () => {
             <Tabs.TabPane tab="Inventory" key="1">
                 <Inventory/>
             </Tabs.TabPane>
-            <Tabs.TabPane tab="Donors" key="2"></Tabs.TabPane>
-            <Tabs.TabPane tab="Hospital" key="3"></Tabs.TabPane>
+            <Tabs.TabPane tab="Donors" key="2">
+              <Donors/>
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="Hospital" key="3">
+              <Hospitals/>
+            </Tabs.TabPane>
           </>
         )}
       </Tabs>

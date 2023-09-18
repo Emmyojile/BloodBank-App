@@ -41,3 +41,23 @@ export const GetCurrentUser = async () => {
     return { success: false, message: error.message };
   }
 };
+
+export const GetAllDonorsOfOrganization = async () => {
+  try {
+    const response = await axiosRequest("get", "/api/users/get-all-donors");
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    return { success: false, message: error.message };
+  }
+};
+
+export const GetAllHospitalsOfOrganization = async () => {
+  try {
+    const response = await axiosRequest("get", "/api/users/get-all-hospitals");
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    return { success: false, message: error.message };
+  }
+};

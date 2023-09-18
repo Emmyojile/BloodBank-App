@@ -19,7 +19,6 @@ const inventorySchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
     },
     organization: {
       type: mongoose.Schema.Types.ObjectId,
