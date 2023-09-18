@@ -39,3 +39,15 @@ export const AddInventory = async (req, res) => {
         })
     }
 }
+
+export const GetInventory =async (req, res) => {
+    try {
+        const inventory = await Inventory.find({organization: req.body.userId}).populate('donor hospital');
+        return res.send({success: true, data: inventory});
+    } catch (error) {
+        return res.send({
+            success: false,
+            message: error.message,
+        })
+    }
+}

@@ -2,11 +2,12 @@ import { Form, Input, Radio, message } from "antd";
 import Modal from "antd/es/modal/Modal";
 import React, { useState } from "react";
 import { getAntdInputValidation } from "../../../utils/helpers";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SetLoading } from "../../../redux/loaderSlice";
 import { AddInventory } from "../../../api/inventory";
 
 const InventoryForm = ({ open, setOpen, reloadData }) => {
+  const {currentUser} = useSelector((state) => state.users)
   const [form] = Form.useForm();
   const [inventoryType, setInventoryType] = useState("in");
   const dispatch = useDispatch();
@@ -16,7 +17,8 @@ const InventoryForm = ({ open, setOpen, reloadData }) => {
       dispatch(SetLoading(true));
       const response = await AddInventory({
         ...values,
-        inventoryType
+        inventoryType,
+        organization: currentUser._id
       })
       dispatch(SetLoading(false));
       if(response.success) {
@@ -58,14 +60,14 @@ const InventoryForm = ({ open, setOpen, reloadData }) => {
             rules={getAntdInputValidation()}
           >
             <select name="" id="">
-              <option value="a+">A+</option>
-              <option value="a-">A-</option>
-              <option value="b+">B+</option>
-              <option value="b-">B-</option>
-              <option value="ab+">AB+</option>
-              <option value="ab-">AB-</option>
-              <option value="o+">O+</option>
-              <option value="o-">O-</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="Ab-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
             </select>
           </Form.Item>
 

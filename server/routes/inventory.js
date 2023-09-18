@@ -1,11 +1,12 @@
 import express from 'express';
 const router = express.Router();
-import {AddInventory} from "../controllers/inventory.js";
+import {AddInventory,GetInventory} from "../controllers/inventory.js";
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 
 
 // Get current user route
-router.route('/add').get(authMiddleware, AddInventory);
+router.route('/add').post(authMiddleware, AddInventory);
+router.route('/').get(authMiddleware, GetInventory);
 
 // router.route('/').get( );
 

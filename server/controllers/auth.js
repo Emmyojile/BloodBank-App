@@ -41,6 +41,14 @@ export const loginUser = async (req, res) => {
             });
         }
 
+        //check if the userType matches
+        if(user.userType !== req.body.userType) {
+            return res.send({
+                success: false,
+                message: `User is not registered as a ${req.body.userType}`
+            });
+        }
+
         //check password
         const validPassword = await user.comparePassword(req.body.password, user.password);
         if(!validPassword) {
