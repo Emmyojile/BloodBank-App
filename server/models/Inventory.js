@@ -13,7 +13,7 @@ const inventorySchema = new mongoose.Schema(
       enum: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
     },
     quantity: {
-      type: String,
+      type: Number,
       required: true,
     },
     email: {

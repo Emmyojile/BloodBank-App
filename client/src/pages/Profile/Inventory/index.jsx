@@ -33,7 +33,7 @@ const Inventory = () => {
         if(record.inventoryType === 'in') {
           return record.donor.name.toUpperCase()
         } else {
-          return record.hospital.name.toUpperCase()
+          return record.hospital.hospitalName.toUpperCase()
         }
       } 
     },
@@ -72,7 +72,9 @@ const Inventory = () => {
       </div>
 
       <Table columns={columns} dataSource={data} className="mt-3"/>
-      {open && <InventoryForm open={open} setOpen={setOpen} />}
+      {open && <InventoryForm open={open} setOpen={setOpen} 
+        reloadData={getData}
+      />}
     </div>
   );
 };
