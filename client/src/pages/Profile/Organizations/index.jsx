@@ -7,6 +7,7 @@ import { getDateFormat } from '../../../utils/helpers';
 
 const Organizations = ({userType}) => {
   const [data, setData] = useState([]);
+  const [selectedOrganization, setSelectedOrganization] = useState(null);
   const dispatch = useDispatch();
 
   const columns = [
@@ -31,6 +32,17 @@ const Organizations = ({userType}) => {
       title: 'Date',
       dataIndex: 'createdAt',
       render: (text) => getDateFormat(text)
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      render: (text, record) => (
+        <span className="underline text-md cursor-pointer"
+          onClick={() => setSelectedOrganization(record)}
+        >
+          HISTORY
+        </span>
+      )
     }
   ];
 
