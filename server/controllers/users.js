@@ -70,3 +70,53 @@ export const GetAllHospitalsOfOrganization = async (req, res) => {
     }
 }
 
+//get all unique organizations for a donor
+export const GetAllOrganizationsOfDonor = async (req, res) => {    
+    try {
+        //get all unique ids from inventory
+        const uniqueOrganizationIds = await Inventory.distinct("organization", {
+            donor: new mongoose.Types.ObjectId(req.body.userId)
+        });
+
+        const organizations = await User.find({
+            _id: {$in: uniqueOrganizationIds}
+        });
+
+        return res.send({
+            success: true,
+            message: "Organizations fetched successfully",
+            data: organizations,
+        });
+    } catch (error) {
+        return res.send({
+            success: false,
+            message: error.message,
+        })
+    }
+}
+
+//get all unique organizations for a hospital
+export const GetAllOrganizationsOfHospital = async (req, res) => {    
+    try {
+        //get all unique ids from inventory
+        const uniqueOrganizationIds = await Inventory.distinct("organization", {
+            hospital: new mongoose.Types.ObjectId(req.body.userId)
+        });
+
+        const organizations = await User.find({
+            _id: {$in: uniqueOrganizationIds}
+        });
+
+        return res.send({
+            success: true,
+            message: "Organizations fetched successfully",
+            data: organizations,
+        });
+    } catch (error) {
+        return res.send({
+            success: false,
+            message: error.message,
+        })
+    }
+}
+

@@ -61,3 +61,23 @@ export const GetAllHospitalsOfOrganization = async () => {
     return { success: false, message: error.message };
   }
 };
+
+export const GetAllOrganizationsOfDonor = async () => {
+  try {
+    const response = await axiosRequest("get", "/api/users/get-all-organizations-of-donor");
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    return { success: false, message: error.message };
+  }
+};
+
+export const GetAllOrganizationsOfHospital = async () => {
+  try {
+    const response = await axiosRequest("get", "/api/users/get-all-organizations-of-hospital");
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    return { success: false, message: error.message };
+  }
+};
