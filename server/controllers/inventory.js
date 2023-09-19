@@ -2,6 +2,8 @@ import User from "../models/User.js";
 import Inventory from "../models/Inventory.js";
 import mongoose from "mongoose";
 
+
+//add inventory
 export const AddInventory = async (req, res) => {
   try {
     //validate email and inventoryType
@@ -92,11 +94,25 @@ export const AddInventory = async (req, res) => {
   }
 };
 
+//get inventory
 export const GetInventory = async (req, res) => {
   try {
     const inventory = await Inventory.find({
       organization: req.body.userId,
     }).sort({createdAt: -1}).populate("donor hospital");
+    return res.send({ success: true, data: inventory });
+  } catch (error) {
+    return res.send({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+//get inventory by filter
+export const GetInventoryByFilters = async (req, res) => {
+  try {
+    const inventory = await Inventory.find(req.body.filters).sort({createdAt: -1}).populate("donor hospital organization");
     return res.send({ success: true, data: inventory });
   } catch (error) {
     return res.send({

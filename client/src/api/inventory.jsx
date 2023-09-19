@@ -19,3 +19,13 @@ export const GetInventory = async () => {
     return { success: false, message: error.message };
   }
 };
+
+export const GetInventoryByFilters = async (payload) => {
+  try {
+    const response = await axiosRequest("post", "/api/inventory/filters", payload);
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    return { success: false, message: error.message };
+  }
+};

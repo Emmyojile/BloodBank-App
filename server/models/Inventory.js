@@ -22,7 +22,7 @@ const inventorySchema = new mongoose.Schema(
     },
     organization: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "organization",
+      ref: "Users",
       required: true,
     },
 
