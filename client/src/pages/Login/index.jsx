@@ -20,7 +20,6 @@ const Login = () => {
       });
       if (response.success) {
         message.success(response.message);
-        console.log(response.data);
         localStorage.setItem("token", response.data);
         navigate("/");
       } else {
