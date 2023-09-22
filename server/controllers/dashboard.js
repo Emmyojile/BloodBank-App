@@ -3,7 +3,7 @@ import Inventory from "../models/Inventory.js";
 import mongoose from "mongoose";
 
 //get all blood groups totalIn, totalOut, available data from inventory
-export const AllBloodGroupsData = async (req, res) => {
+export const GetAllBloodGroupsData = async (req, res) => {
   try {
     const allBloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
     const bloodGroupsData = [];

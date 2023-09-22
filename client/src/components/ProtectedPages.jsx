@@ -41,7 +41,7 @@ const ProtectedPages = ({ children }) => {
       <div>
         {/* header */}
         <div className="flex justify-between items-center bg-primary text-white px-5 py-3">
-          <div>
+          <div onClick={() => navigate("/")} className="cursor-pointer">
             <h1 className="text-2xl">LEGACY BLOODBANK</h1>
             <span className="text-xs">
               {currentUser.userType.toUpperCase()}
