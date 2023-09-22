@@ -32,7 +32,7 @@ function App() {
             }
           />
           
-          <Route path="/login" element={<Login />} />
+          <Route index path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
