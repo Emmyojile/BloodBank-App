@@ -40,7 +40,7 @@ const ProtectedPages = ({ children }) => {
     currentUser && (
       <div>
         {/* header */}
-        <div className="flex justify-between items-center bg-primary text-white px-5 py-3">
+        <div className="flex justify-between items-center bg-primary text-white px-5 py-3 mx-5 rounded-b">
           <div onClick={() => navigate("/")} className="cursor-pointer">
             <h1 className="text-2xl">LEGACY BLOODBANK</h1>
             <span className="text-xs">
@@ -67,7 +67,7 @@ const ProtectedPages = ({ children }) => {
         </div>
 
         {/* body */}
-        <div className="py-5 px-2">{children}</div>
+        <div className="p-5">{children}</div>
       </div>
     )
   );
