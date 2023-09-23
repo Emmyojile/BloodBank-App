@@ -31,6 +31,10 @@ app.use(cookieParser());
 import apiRoutes from "./routes/index.js";
 app.use("/api", apiRoutes);
 
+app.use("/", (req, res) => {
+  res.json("BloodBank Server")
+})
+
 
 const start = async () => {
   try {
