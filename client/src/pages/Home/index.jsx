@@ -45,9 +45,6 @@ const Home = () => {
 
   return (
     <div>
-      <span className="text-primary text-2xl font-semibold">
-        Welcome {getLoggedInUserName(currentUser)}
-      </span>
 
       {currentUser.userType === "organization" && (
         <>
@@ -78,6 +75,8 @@ const Home = () => {
                 </div>
               );
             })}
+
+
           </div>
 
           <span className="text-xl text-gray-700 font-semibold">
@@ -92,6 +91,38 @@ const Home = () => {
             userType={currentUser.userType}
           />
         </>
+      )}
+
+      {currentUser.userType === "donor" && (
+        <div>
+          <span className="text-xl text-gray-700 font-semibold">
+            Your Recent Donations
+          </span>
+
+          <InventoryTable
+            filters={{
+              donor: currentUser._id,
+            }}
+            limit={5}
+            userType={currentUser.userType}
+          />
+        </div>
+      )}
+
+{currentUser.userType === "hospital" && (
+        <div>
+          <span className="text-xl text-gray-700 font-semibold">
+            Your Recent Request / Consumptions
+          </span>
+
+          <InventoryTable
+            filters={{
+              hospital: currentUser._id,
+            }}
+            limit={5}
+            userType={currentUser.userType}
+          />
+        </div>
       )}
     </div>
   );
