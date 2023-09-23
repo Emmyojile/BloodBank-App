@@ -36,6 +36,18 @@ const InventoryTable = ({filters, userType, limit}) => {
         render: (text) => getDateFormat(text)
       }
     ];
+
+    //change columns for hospitals or donor
+    if (userType !== 'organization') {
+      //remove inventory type collumn
+      columns.splice(0, 1);
+
+      //change reference coloumn to organization name
+      columns[2].title = 'Organization Name';
+
+      //chnage date column to consumption date
+      columns[3].title = userType === "hospital" ? "Taken" : "Donated Date";
+    }
   
     const getData = async () => {
       try {
