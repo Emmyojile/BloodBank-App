@@ -28,7 +28,13 @@ const InventoryTable = ({filters, userType, limit}) => {
       {
         title: 'Reference',
         dataIndex: 'reference',
-        render: (text, record)  => record.organization.organizationName
+        render: (text, record)  => {
+          if(userType === 'organization') {
+            return record.inventoryType === 'in' ? record.donor.name : record.hospital.hospitalName
+          } else {
+            return record.organization.organizationName
+          }
+        }
       },
       {
         title: 'Date',
