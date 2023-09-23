@@ -40,7 +40,7 @@ const InventoryTable = ({filters, userType, limit}) => {
     const getData = async () => {
       try {
         dispatch(SetLoading(true));
-        const response = await GetInventoryByFilters({filters, limit});
+        const response = await GetInventoryByFilters(filters, limit);
         dispatch(SetLoading(false));
         if(response.success) {
           setData(response.data);

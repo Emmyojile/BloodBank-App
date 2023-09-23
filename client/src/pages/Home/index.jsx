@@ -45,47 +45,55 @@ const Home = () => {
 
   return (
     <div>
-      <span className="text-primary text-2xl">
+      <span className="text-primary text-2xl font-semibold">
         Welcome {getLoggedInUserName(currentUser)}
       </span>
 
-      <div className="grid grid-cols-4 gap-5 mt-5">
-        {bloodGroupsData.map((bloodGroup, index) => {
-          const color = colors[index];
-          return (
-            <div
-              className={`bg-[black] p-5 flex justify-between text-white rounded items-center`}
-              style={{ backgroundColor: color }}
-            >
-              <h1 className="text-5xl">{bloodGroup.bloodGroup}</h1>
+      {currentUser.userType === "organization" && (
+        <>
+          <div className="grid grid-cols-4 gap-5 mb-5 mt-2">
+            {bloodGroupsData.map((bloodGroup, index) => {
+              const color = colors[index];
+              return (
+                <div
+                  className={`bg-[black] p-5 flex justify-between text-white rounded items-center`}
+                  style={{ backgroundColor: color }}
+                >
+                  <h1 className="text-5xl">{bloodGroup.bloodGroup}</h1>
 
-              <div className="flex flex-col justify-between gap-2">
-                <div className="flex justify-between gap-5">
-                  <span>Total In</span>
-                  <span>{bloodGroup.totalIn} ML</span>
+                  <div className="flex flex-col justify-between gap-2">
+                    <div className="flex justify-between gap-5">
+                      <span>Total In</span>
+                      <span>{bloodGroup.totalIn} ML</span>
+                    </div>
+                    <div className="flex justify-between gap-5">
+                      <span>Total Out</span>
+                      <span>{bloodGroup.totalOut} ML</span>
+                    </div>
+                    <div className="flex justify-between gap-5">
+                      <span>Available</span>
+                      <span>{bloodGroup.available} ML</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex justify-between gap-5">
-                  <span>Total Out</span>
-                  <span>{bloodGroup.totalOut} ML</span>
-                </div>
-                <div className="flex justify-between gap-5">
-                  <span>Available</span>
-                  <span>{bloodGroup.available} ML</span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+              );
+            })}
+          </div>
 
-        <InventoryTable
-          filters={{
-            organization: currentUser._id,
-          }}
-          limit={5}
-          userType={currentUser.userType}
-        />
-      </div>
+          <span className="text-xl text-gray-700 font-semibold">
+            Your Recent Inventory
+          </span>
+
+          <InventoryTable
+            filters={{
+              organization: currentUser._id,
+            }}
+            limit={5}
+            userType={currentUser.userType}
+          />
+        </>
+      )}
+    </div>
   );
 };
 

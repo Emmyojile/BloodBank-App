@@ -2,7 +2,6 @@ import User from "../models/User.js";
 import Inventory from "../models/Inventory.js";
 import mongoose from "mongoose";
 
-
 //add inventory
 export const AddInventory = async (req, res) => {
   try {
@@ -67,8 +66,8 @@ export const AddInventory = async (req, res) => {
 
       if (availableQuantityOfRequestedGroup < requestedQuantity) {
         throw new Error(
-            // `Requested quantity is not available`
-            `Only ${availableQuantityOfRequestedGroup} units of ${requestedGroup} are available`
+          // `Requested quantity is not available`
+          `Only ${availableQuantityOfRequestedGroup} units of ${requestedGroup} are available`
         );
       }
 
@@ -99,7 +98,9 @@ export const GetInventory = async (req, res) => {
   try {
     const inventory = await Inventory.find({
       organization: req.body.userId,
-    }).sort({createdAt: -1}).populate("donor hospital");
+    })
+      .sort({ createdAt: -1 })
+      .populate("donor hospital");
     return res.send({ success: true, data: inventory });
   } catch (error) {
     return res.send({
@@ -112,7 +113,10 @@ export const GetInventory = async (req, res) => {
 //get inventory by filter
 export const GetInventoryByFilters = async (req, res) => {
   try {
-    const inventory = await Inventory.find(req.body.filters).limit(req.body.limit || 10).sort({createdAt: -1}).populate("donor hospital organization");
+    const inventory = await Inventory.find(req.body.filters)
+      .limit(req.body.limit || 10)
+      .sort({ createdAt: -1 })
+      .populate("donor hospital organization");
     return res.send({ success: true, data: inventory });
   } catch (error) {
     return res.send({
