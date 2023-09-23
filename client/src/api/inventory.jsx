@@ -20,9 +20,9 @@ export const GetInventory = async () => {
   }
 };
 
-export const GetInventoryByFilters = async (payload) => {
+export const GetInventoryByFilters = async (filters, limit) => {
   try {
-    const response = await axiosRequest("post", "/api/inventory/filters", payload);
+    const response = await axiosRequest("post", "/api/inventory/filters", (filters, limit));
     return response;
   } catch (error) {
     console.log(error.message);

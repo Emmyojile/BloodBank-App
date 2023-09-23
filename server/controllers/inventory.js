@@ -112,7 +112,7 @@ export const GetInventory = async (req, res) => {
 //get inventory by filter
 export const GetInventoryByFilters = async (req, res) => {
   try {
-    const inventory = await Inventory.find(req.body.filters).sort({createdAt: -1}).populate("donor hospital organization");
+    const inventory = await Inventory.find(req.body.filters).limit(req.body.limit || 10).sort({createdAt: -1}).populate("donor hospital organization");
     return res.send({ success: true, data: inventory });
   } catch (error) {
     return res.send({

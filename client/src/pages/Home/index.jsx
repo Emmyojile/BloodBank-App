@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { SetLoading } from "../../redux/loaderSlice";
 import { GetAllBloodGroupsData } from "../../api/dashboard";
 import { getLoggedInUserName } from "../../utils/helpers";
+import InventoryTable from "../../components/InventoryTable";
+import { current } from "@reduxjs/toolkit";
 
 const Home = () => {
   const { currentUser } = useSelector((state) => state.users);
@@ -76,7 +78,13 @@ const Home = () => {
         })}
       </div>
 
-      
+        <InventoryTable
+          filters={{
+            organization: currentUser._id,
+          }}
+          limit={5}
+          userType={currentUser.userType}
+        />
       </div>
   );
 };
