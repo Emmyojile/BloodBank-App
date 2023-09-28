@@ -10,7 +10,15 @@
     "build-client": "cd client && npm run build",
     "start-client": "cd client && npm run dev"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emmyojile/BloodBank-App.git"
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Emmyojile/BloodBank-App/issues"
+  },
+  "homepage": "https://github.com/Emmyojile/BloodBank-App#readme"
 }
