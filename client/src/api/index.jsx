@@ -1,16 +1,8 @@
 import axios from "axios";
-
-// //LIVE URL
-// liveUrl = import.meta.env.VITE_API_LIVE_URL
-// //LOCAL URL
-// localUrl = import.meta.env.VITE_API_LOCAL_URL
-
-
 const axiosInstance = axios.create({
   // Set your server's base URL here
   // baseURL: "http://localhost:8000",
   baseURL: "https://bloodbank-server.onrender.com/",
-  
 });
 
 const axiosRequest = async (method, endpoint, payload) => {
