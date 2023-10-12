@@ -22,8 +22,7 @@ Organizations can manage their blood inventory, track donations, and update stoc
 Hospitals can request blood units from organizations with real-time tracking.
 - **Donor Management:**
 Donors can search for nearby organizations, schedule appointments, and track donation history.
-- **Responsive Design:**
-User-friendly interface accessible on various devices.
+
 
 ## Technologies Used
 - **React:**
