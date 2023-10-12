@@ -1,6 +1,6 @@
 import { Button, Table, message } from "antd";
 import React, { useEffect, useState } from "react";
-import InventoryForm from "./inventoryForm";
+import InventoryForm from "./InventoryForm";
 import { useDispatch } from "react-redux";
 import { GetInventory } from "../../../api/inventory";
 import { SetLoading } from "../../../redux/loaderSlice";
