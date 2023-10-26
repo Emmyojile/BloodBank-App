@@ -45,7 +45,6 @@ const Home = () => {
 
   return (
     <div>
-
       {currentUser.userType === "organization" && (
         <>
           <div className="grid grid-cols-4 gap-5 mb-5 mt-2">
@@ -75,8 +74,6 @@ const Home = () => {
                 </div>
               );
             })}
-
-
           </div>
 
           <span className="text-xl text-gray-700 font-semibold">
@@ -109,7 +106,7 @@ const Home = () => {
         </div>
       )}
 
-{currentUser.userType === "hospital" && (
+      {currentUser.userType === "hospital" && (
         <div>
           <span className="text-xl text-gray-700 font-semibold">
             Your Recent Request / Consumptions

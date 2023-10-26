@@ -49,19 +49,21 @@ const ProtectedPages = ({ children }) => {
           </div>
 
           <div className="flex items-center gap-1">
-              <i class="ri-shield-user-line"></i>
+            <i class="ri-shield-user-line"></i>
             <div className="flex flex-col">
-              <span className="mr-5 text-md cursor-pointer"
-              onClick={() => navigate("/profile")}
+              <span
+                className="mr-5 text-md cursor-pointer"
+                onClick={() => navigate("/profile")}
               >
                 {getLoggedInUserName(currentUser).toUpperCase()}
               </span>
             </div>
-            <i className="ri-logout-circle-r-line ml-5 cursor-pointer"
-            onClick={()=> {
-              localStorage.removeItem('token');
-              navigate("/login");
-            }}
+            <i
+              className="ri-logout-circle-r-line ml-5 cursor-pointer"
+              onClick={() => {
+                localStorage.removeItem("token");
+                navigate("/login");
+              }}
             ></i>
           </div>
         </div>

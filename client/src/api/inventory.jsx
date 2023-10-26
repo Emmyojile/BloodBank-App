@@ -1,4 +1,4 @@
-import axiosRequest from './index';
+import axiosRequest from "./index";
 
 export const AddInventory = async (payload) => {
   try {
@@ -22,7 +22,10 @@ export const GetInventory = async () => {
 
 export const GetInventoryByFilters = async (filters, limit) => {
   try {
-    const response = await axiosRequest("post", "/api/inventory/filters", {filters, limit});
+    const response = await axiosRequest("post", "/api/inventory/filters", {
+      filters,
+      limit,
+    });
     return response;
   } catch (error) {
     console.log(error.message);

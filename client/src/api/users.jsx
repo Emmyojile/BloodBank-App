@@ -10,7 +10,7 @@
 //     return response;
 // }
 
-import axiosRequest from './index';
+import axiosRequest from "./index";
 
 export const LoginUser = async (payload) => {
   try {
@@ -64,7 +64,10 @@ export const GetAllHospitalsOfOrganization = async () => {
 
 export const GetAllOrganizationsOfDonor = async () => {
   try {
-    const response = await axiosRequest("get", "/api/users/get-all-organizations-of-donor");
+    const response = await axiosRequest(
+      "get",
+      "/api/users/get-all-organizations-of-donor"
+    );
     return response;
   } catch (error) {
     console.log(error.message);
@@ -74,7 +77,10 @@ export const GetAllOrganizationsOfDonor = async () => {
 
 export const GetAllOrganizationsOfHospital = async () => {
   try {
-    const response = await axiosRequest("get", "/api/users/get-all-organizations-of-hospital");
+    const response = await axiosRequest(
+      "get",
+      "/api/users/get-all-organizations-of-hospital"
+    );
     return response;
   } catch (error) {
     console.log(error.message);

@@ -7,7 +7,7 @@ import { SetLoading } from "../../../redux/loaderSlice";
 import { AddInventory } from "../../../api/inventory";
 
 const InventoryForm = ({ open, setOpen, reloadData }) => {
-  const {currentUser} = useSelector((state) => state.users)
+  const { currentUser } = useSelector((state) => state.users);
   const [form] = Form.useForm();
   const [inventoryType, setInventoryType] = useState("in");
   const dispatch = useDispatch();
@@ -18,12 +18,12 @@ const InventoryForm = ({ open, setOpen, reloadData }) => {
       const response = await AddInventory({
         ...values,
         inventoryType,
-        organization: currentUser._id
-      })
+        organization: currentUser._id,
+      });
       dispatch(SetLoading(false));
-      if(response.success) {
+      if (response.success) {
         reloadData();
-        message.success('Inventory added successfully')
+        message.success("Inventory added successfully");
         setOpen(false);
       } else {
         throw new Error(response.message);
@@ -32,7 +32,7 @@ const InventoryForm = ({ open, setOpen, reloadData }) => {
       message.error(error.message);
       dispatch(SetLoading(false));
     }
-  }
+  };
   return (
     <div>
       <Modal
@@ -44,7 +44,12 @@ const InventoryForm = ({ open, setOpen, reloadData }) => {
           form.submit();
         }}
       >
-        <Form layout="vertical" className="flex flex-col gap-5" form={form} onFinish={onFinish}>
+        <Form
+          layout="vertical"
+          className="flex flex-col gap-5"
+          form={form}
+          onFinish={onFinish}
+        >
           <Form.Item label="Inventory Type">
             <Radio.Group
               value={inventoryType}

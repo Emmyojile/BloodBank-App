@@ -1,8 +1,12 @@
-import axiosRequest from './index';
+import axiosRequest from "./index";
 
 export const GetAllBloodGroupsData = async (payload) => {
   try {
-    const response = await axiosRequest("get", "/api/dashboard/blood-groups-data", payload);
+    const response = await axiosRequest(
+      "get",
+      "/api/dashboard/blood-groups-data",
+      payload
+    );
     return response;
   } catch (error) {
     console.log(error.message);

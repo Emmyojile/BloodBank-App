@@ -16,7 +16,7 @@ const Login = () => {
       dispatch(SetLoading(true));
       const response = await LoginUser({
         ...values,
-        userType: type
+        userType: type,
       });
       if (response.success) {
         message.success(response.message);

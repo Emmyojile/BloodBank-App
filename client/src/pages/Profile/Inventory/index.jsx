@@ -12,36 +12,36 @@ const Inventory = () => {
   const dispatch = useDispatch();
   const columns = [
     {
-      title: 'Inventory Type',
-      dataIndex: 'inventoryType',
-      render: (text) => text.toUpperCase()
+      title: "Inventory Type",
+      dataIndex: "inventoryType",
+      render: (text) => text.toUpperCase(),
     },
     {
-      title: 'Blood Group',
-      dataIndex: 'bloodGroup',
-      render: (text) => text.toUpperCase()
+      title: "Blood Group",
+      dataIndex: "bloodGroup",
+      render: (text) => text.toUpperCase(),
     },
     {
-      title: 'Quantity',
-      dataIndex: 'quantity',
-      render: (text) => text + ' ML'
+      title: "Quantity",
+      dataIndex: "quantity",
+      render: (text) => text + " ML",
     },
     {
-      title: 'Reference',
-      dataIndex: 'reference',
-      render: (text, record)  => {
-        if(record.inventoryType === 'in') {
-          return record.donor.name.toUpperCase()
+      title: "Reference",
+      dataIndex: "reference",
+      render: (text, record) => {
+        if (record.inventoryType === "in") {
+          return record.donor.name.toUpperCase();
         } else {
-          return record.hospital.hospitalName.toUpperCase()
+          return record.hospital.hospitalName.toUpperCase();
         }
-      } 
+      },
     },
     {
-      title: 'Date',
-      dataIndex: 'createdAt',
-      render: (text) => getDateFormat(text)
-    }
+      title: "Date",
+      dataIndex: "createdAt",
+      render: (text) => getDateFormat(text),
+    },
   ];
 
   const getData = async () => {
@@ -49,7 +49,7 @@ const Inventory = () => {
       dispatch(SetLoading(true));
       const response = await GetInventory();
       dispatch(SetLoading(false));
-      if(response.success) {
+      if (response.success) {
         setData(response.data);
       } else {
         throw new Error(response.message);
@@ -58,11 +58,11 @@ const Inventory = () => {
       message.error(error.message);
       dispatch(SetLoading(false));
     }
-  }
+  };
 
   useEffect(() => {
     getData();
-  },[])
+  }, []);
   return (
     <div>
       <div className="flex justify-end">
@@ -71,10 +71,10 @@ const Inventory = () => {
         </Button>
       </div>
 
-      <Table columns={columns} dataSource={data} className="mt-3"/>
-      {open && <InventoryForm open={open} setOpen={setOpen} 
-        reloadData={getData}
-      />}
+      <Table columns={columns} dataSource={data} className="mt-3" />
+      {open && (
+        <InventoryForm open={open} setOpen={setOpen} reloadData={getData} />
+      )}
     </div>
   );
 };

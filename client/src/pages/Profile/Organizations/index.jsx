@@ -84,24 +84,22 @@ const Organizations = ({ userType }) => {
 
       {showHistoryModal && (
         <Modal
-        title={
-          `${
-            userType === "donor" ? "Donation History" : "Consumption History" 
-          } In ${selectedOrganization.organizationName}`
-        }
-        centered
-        open={showHistoryModal}
-        onClose={()=> setShowHistoryModal(false)}
-        width={1000}
-        onCancel={()=> setShowHistoryModal(false)}
-      >
-        <InventoryTable
-          filters={{
-            organization: selectedOrganization._id,
-            [userType]: currentUser._id,
-          }}
-        />
-      </Modal>
+          title={`${
+            userType === "donor" ? "Donation History" : "Consumption History"
+          } In ${selectedOrganization.organizationName}`}
+          centered
+          open={showHistoryModal}
+          onClose={() => setShowHistoryModal(false)}
+          width={1000}
+          onCancel={() => setShowHistoryModal(false)}
+        >
+          <InventoryTable
+            filters={{
+              organization: selectedOrganization._id,
+              [userType]: currentUser._id,
+            }}
+          />
+        </Modal>
       )}
     </div>
   );

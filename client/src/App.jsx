@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div>
-      {loading && <Loading/>}
+      {loading && <Loading />}
       <BrowserRouter>
         <Routes>
           <Route
@@ -27,11 +27,11 @@ function App() {
             path="/profile"
             element={
               <ProtectedPages>
-                <Profile/>
+                <Profile />
               </ProtectedPages>
             }
           />
-          
+
           <Route index path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
